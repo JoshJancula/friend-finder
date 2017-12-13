@@ -1,0 +1,70 @@
+var friendData = [
+{
+  "name":"Ahmed",
+  "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+  "scores":[
+      5,
+      1,
+      4,
+      4,
+      5,
+      1,
+      2,
+      5,
+      4,
+      1
+    ]
+},
+{
+  "name":"Bill",
+  "photo":"http://www.gripmagazine.com/wp-content/uploads/2017/05/bill-cosby-arrest-warrant.png",
+  "scores":[
+      4,
+      1,
+      2,
+      4,
+      2,
+      1,
+      5,
+      5,
+      2,
+      5
+    ]
+},
+{
+"name":"Donald",
+  "photo":"https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/05/12/104466932-PE_Color.240x240.jpg?v=1494613853",
+  "scores":[
+      5,
+      1,
+      4,
+      4,
+      5,
+      1,
+      2,
+      5,
+      4,
+      1
+    ]
+    },
+    {
+    "name":"hilary",
+  "photo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpOJ22GlHNciquGlDLW9ohTZDMqHaSI1Q415svkRjG72OansU",
+  "scores":[
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+    }
+   
+];
+
+
+module.exports = friendData;

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Friend - Finder</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<style>
+
+
+#match-img {
+  height: 150px;
+  width: 250px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Friend Finder</h1>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Take Our Survey And See Who You Get Matched With!</strong></h3>
+          </div>
+          <div class="panel-body">
+            <form method="POST" role="form">
+              <!--name goes here-->
+              <div class="form-group">
+                <label for="name">Name (required)</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+              <!--photo goes here-->
+              <div class="form-group">
+                <label for="photo">Photo (required)</label>
+                <input type="text" class="form-control" id="photo">
+              </div>
+              <!--question 1-->
+              <div class="list-group">
+                <h4>Question #1</h4>
+                <p>Your mind is alsways buzzing with unexplored ideas and plans.</p>
+
+                <select id="question1">
+                   <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 2-->
+              <div class="list-group">
+                <h4>Question #2</h4>
+                <p>Generally speaking, you rely more on your experience than your imagination.</p>
+
+                <select id="question2">
+                <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 3-->
+              <div class="list-group">
+                <h4>Question #3</h4>
+                <p>You find it easy to stay relaxed and focused even when there is some pressure.</p>
+
+                <select id="question3">
+                  <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 4-->
+              <div class="list-group">
+                <h4>Question #4</h4>
+                <p>You rarely do something just out of sheer curiosity.</p>
+
+                <select id="question4">
+                  <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 5-->
+              <div class="list-group">
+                <h4>Question #5</h4>
+                <p>People can rarely upset you.</p>
+
+                <select id="question5">
+                  <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 6-->
+              <div class="list-group">
+                <h4>Question #6</h4>
+                <p>It is often difficult for you to relate to other people’s feelings.</p>
+
+                <select id="question6">
+                  <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 7-->
+              <div class="list-group">
+                <h4>Question #7</h4>
+                <p>In a discussion, truth should be more important than people’s sensitivities.</p>
+
+                <select id="question7">
+                 <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 8-->
+              <div class="list-group">
+                <h4>Question #8</h4>
+                <p>You rarely get carried away by fantasies and ideas.</p>
+
+                <select id="question8">
+                 <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 9-->
+              <div class="list-group">
+                <h4>Question #9</h4>
+                <p>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</p>
+
+                <select id="question9">
+                    <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+              <!--question 10-->
+              <div class="list-group">
+                <h4>Question #10</h4>
+                <p>You feel more energetic after spending time with a group of people.</p>
+
+                <select id="question10">
+                   <option disabled selected>please select an answer</option>
+                  <option value="1">1 (strongly disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                   <option value="5">5 (strongly agree)</option>
+                </select>
+              </div>
+
+
+
+
+
+
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="find-friend"><span class="glyphicon glyphicon-fire"></span>Find a Friend</button>
+            <p><a href="/api/friends">API friendData Link</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+  <div id="results-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><strong>Best Match</strong></h2>
+        </div>
+        <div class="modal-body">
+          <h2 id="match-name"></h2>
+          <img id="match-img" src="#" alt="#">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+   
+     var scores = [];
+    var lowestDiff;
+    var bestMatch; 
+    var bestMatchPhoto;
+    
+     function isThisMyFriend(otherName, otherScores, otherPhoto) {
+              console.log(otherScores);
+                var diff = 0; // diff starts at 0
+                for (var i = 0; i < scores.length; i++) { // compare your score to each score
+               
+                  diff += Math.abs(scores[i] - otherScores[i]);
+                } // whichever has the lowest diff and doesn't match your name is your friend
+                if (diff < lowestDiff) {
+                  bestMatch = otherName;
+                  bestMatchPhoto = otherPhoto;
+                  lowestDiff = diff;
+                }
+              }
+              
+    // when you click on the submit button 
+    $("#find-friend").on("click", function(event) {
+      event.preventDefault();
+     scores = [];
+      scores.push($("#question1").val());
+      scores.push($("#question2").val());
+      scores.push($("#question3").val());
+      scores.push($("#question4").val());
+      scores.push($("#question5").val());
+      scores.push($("#question6").val());
+      scores.push($("#question7").val());
+      scores.push($("#question8").val());
+      scores.push($("#question9").val());
+      scores.push($("#question10").val());
+
+      var newFriend = {
+        name: $("#name").val().trim(),
+        photo: $("#photo").val().trim(),
+        scores: scores
+      };
+    
+      // post your survey results 
+      $.post("/api/friends", newFriend)
+        .done(function(data) {
+          
+          // get a friend from the api
+          var currentURL = window.location.origin;
+
+      // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+      $.ajax({ url: currentURL + "/api/friends", method: "GET" })
+      .done(function(friendData) {
+      
+            console.log(friendData);
+          
+               lowestDiff = 9999; // Any big number here
+               bestMatch = ""; // Haven't found anyone yet
+              
+              // for each friend call isThisMyFriend
+              
+              for (var i = 0; i < 4; i++) {
+                isThisMyFriend(friendData[i].name, friendData[i].scores, friendData[i].photo);
+              }
+              // get the attributes for the best match
+                $("#match-name").text(bestMatch);
+                $("#match-img").attr("src", bestMatchPhoto);
+                // Show the modal with the best match
+                $("#results-modal").modal("toggle");
+                
+                
+                
+               
+                
+
+          });
+        });
+    });
+       
+        // close the modal
+      $("#closeModal").on("click", function(event) {
+          $("#results-modal").modal("toggle");
+      });
+
+   
+  </script>
+
+</body>
+
+</html>
