@@ -272,17 +272,6 @@
       scores.push($("#question10").val());
 
 
-      var score1 = $("#question1").val();
-      var score2 = $("#question2").val();
-      var score3 = $("#question3").val();
-      var score4 = $("#question4").val();
-      var score5 = $("#question5").val();
-      var score6 = $("#question6").val();
-      var score7 = $("#question7").val();
-      var score8 = $("#question8").val();
-      var score9 = $("#question9").val();
-      var score10 = $("#question10").val();
-
       var name = $("#name").val().trim();
       var photo = $("#photo").val().trim();
 
@@ -299,10 +288,7 @@
           if (friendData.length !== 0) {
             // for each friend call isThisMyFriend
             friendData.forEach(function(result) {
-              // for (let i = 0; i < results.length; i++) {
-              //   console.log(results[i].score)
-              // isThisMyFriend(results[i].name, results[i].scores, results[i].photo);
-              // }
+           
               isThisMyFriend(result.name, result.scores, result.photo)
             });
           }
@@ -320,7 +306,7 @@
             data: {
               name: name,
               photo: photo,
-              scores: [score1, score2, score3, score4, score5, score6, score7, score8, score9, score10]
+              scores: [scores]
             }
           });
         });
