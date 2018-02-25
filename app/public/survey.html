@@ -242,11 +242,9 @@
     var bestMatchPhoto;
 
     function isThisMyFriend(otherName, otherScores, otherPhoto) {
-      console.log("at the begining of isThisMyFriend these are possible friends: ");
       var diff = 0; // diff starts at 0
 
       for (let i = 0; i < scores.length; i++) { // compare your score to each score
-        // console.log(otherScores[i]);
         diff += Math.abs(scores[i] - otherScores[i]);
       } // whichever has the lowest diff and doesn't match your name is your friend
       if (diff < lowestDiff) { // the get route works great it is only the post that doesn't work, yes, I'm trting to find the post route:)
@@ -288,7 +286,6 @@
           if (friendData.length !== 0) {
             // for each friend call isThisMyFriend
             friendData.forEach(function(result) {
-           
               isThisMyFriend(result.name, result.scores, result.photo)
             });
           }
