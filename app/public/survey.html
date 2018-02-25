@@ -9,16 +9,12 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<style>
-
-
-#match-img {
-  height: 150px;
-  width: 250px;
-}
-
-
-</style>
+  <style>
+    #match-img {
+      height: 150px;
+      width: 250px;
+    }
+  </style>
 </head>
 
 <body>
@@ -207,7 +203,7 @@
             <br>
             <div class="text-right">
               <button type="submit" class="btn btn-primary btn-md" id="find-friend"><span class="glyphicon glyphicon-fire"></span>Find a Friend</button>
-            <p><a href="/api/friends">API friendData Link</a></p>
+              <p><a href="/friends">API friendData Link</a></p>
             </div>
           </div>
         </div>
@@ -216,7 +212,7 @@
     </div>
   </div>
 
-<!-- Modal -->
+  <!-- Modal -->
   <div id="results-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -239,30 +235,31 @@
   </div>
 
   <script type="text/javascript">
-   
-     var scores = [];
-    var lowestDiff;
-    var bestMatch; 
-    var bestMatchPhoto;
     
-     function isThisMyFriend(otherName, otherScores, otherPhoto) {
-              console.log(otherScores);
-                var diff = 0; // diff starts at 0
-                for (var i = 0; i < scores.length; i++) { // compare your score to each score
-               
-                  diff += Math.abs(scores[i] - otherScores[i]);
-                } // whichever has the lowest diff and doesn't match your name is your friend
-                if (diff < lowestDiff) {
-                  bestMatch = otherName;
-                  bestMatchPhoto = otherPhoto;
-                  lowestDiff = diff;
-                }
-              }
-              
+    var scores = [];
+    var lowestDiff;
+    var bestMatch;
+    var bestMatchPhoto;
+
+    function isThisMyFriend(otherName, otherScores, otherPhoto) {
+      console.log("at the begining of isThisMyFriend these are possible friends: ");
+      var diff = 0; // diff starts at 0
+
+      for (let i = 0; i < scores.length; i++) { // compare your score to each score
+        // console.log(otherScores[i]);
+        diff += Math.abs(scores[i] - otherScores[i]);
+      } // whichever has the lowest diff and doesn't match your name is your friend
+      if (diff < lowestDiff) { // the get route works great it is only the post that doesn't work, yes, I'm trting to find the post route:)
+        bestMatch = otherName;
+        bestMatchPhoto = otherPhoto;
+        lowestDiff = diff;
+      }
+    }
+
     // when you click on the submit button 
     $("#find-friend").on("click", function(event) {
       event.preventDefault();
-     scores = [];
+      scores = [];
       scores.push($("#question1").val());
       scores.push($("#question2").val());
       scores.push($("#question3").val());
@@ -274,54 +271,67 @@
       scores.push($("#question9").val());
       scores.push($("#question10").val());
 
-      var newFriend = {
-        name: $("#name").val().trim(),
-        photo: $("#photo").val().trim(),
-        scores: scores
-      };
-    
-      // post your survey results 
-      $.post("/api/friends", newFriend)
-        .done(function(data) {
-          
-          // get a friend from the api
-          var currentURL = window.location.origin;
 
-      // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-      $.ajax({ url: currentURL + "/api/friends", method: "GET" })
-      .done(function(friendData) {
-      
-            console.log(friendData);
-          
-               lowestDiff = 9999; // Any big number here
-               bestMatch = ""; // Haven't found anyone yet
-              
-              // for each friend call isThisMyFriend
-              
-              for (var i = 0; i < 4; i++) {
-                isThisMyFriend(friendData[i].name, friendData[i].scores, friendData[i].photo);
-              }
-              // get the attributes for the best match
-                $("#match-name").text(bestMatch);
-                $("#match-img").attr("src", bestMatchPhoto);
-                // Show the modal with the best match
-                $("#results-modal").modal("toggle");
-                
-                
-                
-               
-                
+      var score1 = $("#question1").val();
+      var score2 = $("#question2").val();
+      var score3 = $("#question3").val();
+      var score4 = $("#question4").val();
+      var score5 = $("#question5").val();
+      var score6 = $("#question6").val();
+      var score7 = $("#question7").val();
+      var score8 = $("#question8").val();
+      var score9 = $("#question9").val();
+      var score10 = $("#question10").val();
 
+      var name = $("#name").val().trim();
+      var photo = $("#photo").val().trim();
+
+      // get all friends
+      $.ajax({
+          method: "GET",
+          url: "/friends"
+        })
+        .done(function(friendData) {
+          console.log(friendData);
+          var results = friendData
+          lowestDiff = 9999; // Any big number here
+          bestMatch = ""; // Haven't found anyone yet
+          if (friendData.length !== 0) {
+            // for each friend call isThisMyFriend
+            friendData.forEach(function(result) {
+              // for (let i = 0; i < results.length; i++) {
+              //   console.log(results[i].score)
+              // isThisMyFriend(results[i].name, results[i].scores, results[i].photo);
+              // }
+              isThisMyFriend(result.name, result.scores, result.photo)
+            });
+          }
+          // get the attributes for the best match
+          $("#match-name").text(bestMatch);
+          $("#match-img").attr("src", bestMatchPhoto);
+          // Show the modal with the best match
+          $("#results-modal").modal("toggle");
+
+        }).done(function() { // post our results
+
+          $.ajax({
+            method: "POST",
+            url: "/friends",
+            data: {
+              name: name,
+              photo: photo,
+              scores: [score1, score2, score3, score4, score5, score6, score7, score8, score9, score10]
+            }
           });
         });
-    });
-       
-        // close the modal
-      $("#closeModal").on("click", function(event) {
-          $("#results-modal").modal("toggle");
-      });
 
-   
+    });
+
+    // close the modal
+    $("#closeModal").on("click", function(event) {
+      $("#results-modal").modal("toggle");
+    });
+    
   </script>
 
 </body>
