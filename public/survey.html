@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Friend - Finder</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -42,8 +42,8 @@
               </div>
               <!--photo goes here-->
               <div class="form-group">
-                <label for="photo">Photo (required)</label>
-                <input type="text" class="form-control" id="photo">
+                <label for="photo">Photo (optional)</label>
+                <input type="file" class="form-control" id="photo" value='upload' name="photo">
               </div>
               <!--question 1-->
               <div class="list-group">
@@ -234,90 +234,10 @@
 
     </div>
   </div>
-
-  <script type="text/javascript">
-    
-    var scores = [];
-    var lowestDiff;
-    var bestMatch;
-    var bestMatchPhoto;
-
-    function isThisMyFriend(otherName, otherScores, otherPhoto) {
-      var diff = 0; // diff starts at 0
-
-      for (let i = 0; i < scores.length; i++) { // compare your score to each score
-        diff += Math.abs(scores[i] - otherScores[i]);
-      } // whichever has the lowest diff and doesn't match your name is your friend
-      if (diff < lowestDiff) { // the get route works great it is only the post that doesn't work, yes, I'm trting to find the post route:)
-        bestMatch = otherName;
-        bestMatchPhoto = otherPhoto;
-        lowestDiff = diff;
-      }
-    }
-
-    // when you click on the submit button 
-    $("#find-friend").on("click", function(event) {
-      event.preventDefault();
-      scores = [];
-      scores.push($("#question1").val());
-      scores.push($("#question2").val());
-      scores.push($("#question3").val());
-      scores.push($("#question4").val());
-      scores.push($("#question5").val());
-      scores.push($("#question6").val());
-      scores.push($("#question7").val());
-      scores.push($("#question8").val());
-      scores.push($("#question9").val());
-      scores.push($("#question10").val());
-
-
-      var name = $("#name").val().trim();
-      var photo = $("#photo").val().trim();
-
-      // get all friends
-      $.ajax({
-          method: "GET",
-          url: "/friends"
-        })
-        .done(function(friendData) {
-          console.log(friendData);
-          var results = friendData
-          lowestDiff = 9999; // Any big number here
-          bestMatch = ""; // Haven't found anyone yet
-          if (friendData.length !== 0) {
-            // for each friend call isThisMyFriend
-            friendData.forEach(function(result) {
-              isThisMyFriend(result.name, result.scores, result.photo)
-            });
-          }
-          // get the attributes for the best match
-          $("#match-name").text(bestMatch);
-          $("#match-img").attr("src", bestMatchPhoto);
-          // Show the modal with the best match
-          $("#results-modal").modal("toggle");
-
-        }).done(function() { // post our results
-
-          $.ajax({
-            method: "POST",
-            url: "/friends",
-            data: {
-              name: name,
-              photo: photo,
-              scores: [scores]
-            }
-          });
-        });
-
-    });
-
-    // close the modal
-    $("#closeModal").on("click", function(event) {
-      $("#results-modal").modal("toggle");
-    });
-    
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  <script src="./js/script.js"></script>
 
 </body>
 
 </html>
+ 

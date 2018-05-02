@@ -25,13 +25,13 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
 });
 
+// Static directory
+app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./app/routing/apiRoutes")(app);
-require("./app/routing/htmlRoutes")(app);
-
-
+require("./routing/apiRoutes")(app);
+require("./routing/htmlRoutes")(app);
 
 // Start the server
 app.listen(PORT, function() {

@@ -1,7 +1,7 @@
 
 
 
-var Friend = require("../../models/friends.js");
+var Friend = require("../models/friends.js");
 
 // ===============================================================================
 // ROUTING
